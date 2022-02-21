@@ -57,5 +57,3 @@ app.use((req, res, next) => {
 app.use('/', routes() );
 
 app.listen(port, () => console.log(`Example app listening on port ${port}`))
-
-require('./handlers/email');
