@@ -23,14 +23,14 @@ passport.use(
 
                 if(!usuario.verificarPassword(password)){
                     return done(null, false, {
-                        message: 'Password Incorrecto'
+                        message: 'Incorrect password'
                     })
                 }
 
                 return done(null, usuario);
             } catch (error) {
                 return done(null, false, {
-                    message: 'Esa cuenta no existe'
+                    message: 'This account does not exist'
                 })
             }
         }

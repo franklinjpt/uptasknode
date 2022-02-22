@@ -3,14 +3,14 @@ const enviarEmail = require('../handlers/email');
 
 exports.formCrearCuenta = (req, res) => {
     res.render('crearCuenta', {
-        nombrePagina: 'Crear Cuenta en UpTask'
+        nombrePagina: 'Create a UpTask Account'
     });
 }
 
 exports.formIniciarSesion = (req, res) => {
     const { error } = res.locals.mensajes;
     res.render('iniciarSesion', {
-        nombrePagina: 'Iniciar Sesión en UpTask',
+        nombrePagina: 'UpTask Login',
         error
     });
 }
@@ -32,18 +32,18 @@ exports.crearCuenta = async (req, res) => {
 
         await enviarEmail.enviar({
           usuario,
-          subject: 'Confirmar Cuenta',
+          subject: 'Account Confirmation',
           confirmarUrl,
-          archivo: 'confirmar-cuenta'
+          archivo: 'account-confirmation'
         });
 
-        req.flash('correcto', 'Enviamos un correo, por favor confirma tu cuenta');
+        req.flash('correcto', 'We sent an email, please confirm your account.');
         res.redirect('/iniciar-sesion');
     } catch (error) { 
         req.flash('error', error.errors.map(error => error.message))      
         res.render('crearCuenta', {
             mensajes: req.flash(),
-            nombrePagina: 'Crear Cuenta en UpTask',
+            nombrePagina: 'Create UpTask Account',
             email
         });
     }
@@ -51,7 +51,7 @@ exports.crearCuenta = async (req, res) => {
 
 exports.formResetPassword = (req, res) => {
     res.render('restablecer', {
-        nombrePagina: 'Restablecer contraseña'
+        nombrePagina: 'Reset Password'
     })
 }
 
@@ -63,13 +63,13 @@ exports.confirmarCuenta = async (req, res) => {
   });
 
   if(!usuario){
-    req.flash('error', 'No valido');
+    req.flash('error', 'Not valid');
     res.redirect('/crear-cuenta');
   }
 
   usuario.activo = 1;
   await usuario.save();
 
-  req.flash('correcto', 'Cuenta activada correctamente');
+  req.flash('correcto', 'Account activated successfully');
   res.redirect('/iniciar-sesion');
 }

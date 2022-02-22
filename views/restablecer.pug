@@ -5,7 +5,7 @@ html(lang="en")
     body.login 
         .contenedor-formulario 
             h1= nombrePagina 
-            p Agrega tu E-mail para restablecer la contraseña
+            p Add your E-mail to reset your password
 
             if locals.mensajes 
               .alertas 
@@ -17,8 +17,8 @@ html(lang="en")
             form.caja-login(method="POST" action="/restablecer")
                 .campo  
                     label(for="email")  E-mail:
-                    input(type="email" name="email" placeholder="Tu Email" required )
+                    input(type="email" name="email" placeholder="Your Email" required )
                 .campo.enviar
-                    input.boton(type="submit" value="Restablecer Password")
+                    input.boton(type="submit" value="Reset Password")
                 .campo.acciones 
-                    a(href="/iniciar-sesion") Ya me acordé, regresar al Iniciar Sesión
+                    a(href="/iniciar-sesion") I remembered, return to Login

@@ -4,16 +4,16 @@ html(lang="en")
         include partials/header
     body
         header.barra
-            h1 UpTask - Administrador de Proyectos
-            a(href="/cerrar-sesion") Cerrar Sesión
+            h1 UpTask - Project Admin
+            a(href="/cerrar-sesion") Log Out
 
         main.contenedor
             aside.contenedor-proyectos
                 .panel.crear-proyecto
-                    a(href="/nuevo-proyecto" class="boton") Nuevo Proyecto
+                    a(href="/nuevo-proyecto" class="boton") New Project
                         span +
                 .panel.lista-proyectos
-                    h2 Proyectos
+                    h2 Projects
                     ul#proyectos.proyectos
                         if(proyectos.length)
                             each proyecto in proyectos

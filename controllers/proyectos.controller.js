@@ -6,7 +6,7 @@ exports.proyectosHome = async (req, res) => {
     const proyectos = await Proyectos.findAll({where: {usuarioId}});
 
     res.render('index', {
-        nombrePagina: 'Proyectos',
+        nombrePagina: 'Projects',
         proyectos
     });
 }
@@ -16,7 +16,7 @@ exports.formProyecto = async (req, res) =>{
     const proyectos = await Proyectos.findAll({where: {usuarioId}});
 
     res.render('nuevoProyecto', {
-        nombrePagina: 'Nuevo proyecto',
+        nombrePagina: 'New project',
         proyectos
     });
 }
@@ -28,11 +28,11 @@ exports.nuevoProyecto = async (req, res) => {
     const proyectos = await Proyectos.findAll({where: {usuarioId}});
     let errores = [];
 
-    if(!nombre) errores.push({'texto': 'Agrega un nombre al proyecto'})
+    if(!nombre) errores.push({'texto': 'Add a project name'})
 
     if(errores.length>0){
         res.render('nuevoProyecto', {
-            nombrePagina: 'Nuevo proyecto',
+            nombrePagina: 'New project',
             errores,
             proyectos
         })
@@ -65,7 +65,7 @@ exports.proyectoByUrl = async (req, res) => {
     if(!proyecto) return next();
 
     res.render('tareas',{
-        nombrePagina: 'Tareas del proyecto',
+        nombrePagina: 'Project tasks',
         proyecto,
         proyectos,
         tareas
@@ -84,7 +84,7 @@ exports.formularioEditar = async (req, res) => {
     const [proyectos, proyecto] = await Promise.all([proyectosPromise, proyectoPromise]);
 
     res.render('nuevoProyecto',{
-        nombrePagina: 'Editar Proyecto',
+        nombrePagina: 'Edit Project',
         proyectos,
         proyecto
     })
@@ -97,11 +97,11 @@ exports.actualizarProyecto = async (req, res) => {
     const proyectos = await Proyectos.findAll({where: {usuarioId}});
     let errores = [];
 
-    if(!nombre) errores.push({'texto': 'Agrega un nombre al proyecto'})
+    if(!nombre) errores.push({'texto': 'Add a project name'})
 
     if(errores.length>0){
         res.render('nuevoProyecto', {
-            nombrePagina: 'Nuevo proyecto',
+            nombrePagina: 'New project',
             errores,
             proyectos
         })
@@ -130,5 +130,5 @@ exports.eliminarProyecto = async (req, res, next) =>{
         return next()
     }
 
-    res.send('Proyecto eliminado correctamente')
+    res.send('Project successfully deleted')
 }

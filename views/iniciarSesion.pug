@@ -4,7 +4,7 @@ html(lang="en")
         include partials/header
     body.login
         .contenedor-formulario 
-            h1 Iniciar Sesión en Uptask 
+            h1 UpTask Login
 
             if locals.mensajes 
               .alertas 
@@ -16,13 +16,13 @@ html(lang="en")
             form#fomulario.caja.caja-login(method="POST" action="/iniciar-sesion")
                 .campo  
                     label(for="email")  E-mail:
-                    input(type="email" name="email" placeholder="Tu Email" required )
+                    input(type="email" name="email" placeholder="Your Email" required )
                 .campo  
                     label(for="password")  Password:
-                    input(type="password" name="password" placeholder="Tu Password" required)
+                    input(type="password" name="password" placeholder="Your Password" required)
                 .campo.enviar
-                    input.boton(type="submit" value="Iniciar Sesión")
+                    input.boton(type="submit" value="Sign In")
                 .campo.acciones
-                    a(href="/crear-cuenta") ¿Aún no tienes cuenta? Crea una gratis
-                    a(href="/restablecer") ¿Olvidaste tu contraseña?
+                    a(href="/crear-cuenta") Don't have an account yet? Create one for free
+                    a(href="/restablecer") Forgot your password?
         include partials/scripts

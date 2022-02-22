@@ -31,7 +31,7 @@ exports.enviarToken = async (req, res) => {
     const usuario = await Usuarios.findOne({where: {email}});
 
     if(!usuario){
-        req.flash('error', 'No existe esa cuenta');
+        req.flash('error', 'This account does not exist');
         res.redirect('/restablecer');
     }
 
@@ -46,10 +46,10 @@ exports.enviarToken = async (req, res) => {
       usuario,
       subject: 'Password Reset',
       resetUrl,
-      archivo: 'restablecer-password'
+      archivo: 'reset-password'
     });
     
-    req.flash('correcto', 'Se envió un mensaje a tu correo');
+    req.flash('correcto', 'A message was sent to your email');
     res.redirect('/iniciar-sesion');
 }
 
@@ -61,12 +61,12 @@ exports.validarToken = async (req, res) => {
   });
 
   if(!usuario){
-    req.flash('error', 'No Válido');
+    req.flash('error', 'Not Valid');
     res.redirect('/restablecer');
   }
 
   res.render('resetPassword', {
-    nombrePagina: 'Restablecer Contraseña'
+    nombrePagina: 'Reset Password'
   })
 }
 
@@ -81,7 +81,7 @@ exports.actualizarPassword = async (req, res) => {
   })
 
   if(!usuario){
-    req.flash('error', 'No válido');
+    req.flash('error', 'Not Valid');
     res.redirect('/restablecer');
   }
 
@@ -91,6 +91,6 @@ exports.actualizarPassword = async (req, res) => {
 
   await usuario.save();
 
-  req.flash('correcto', 'Tu password se ha modificado correctamente');
+  req.flash('correcto', 'Your password has been successfully modified');
   res.redirect('/iniciar-sesion');
 }

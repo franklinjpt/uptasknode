@@ -6,10 +6,10 @@ block content
 
         form.agregar-tarea(action=`/proyectos/${proyecto.url}` method="POST")
             .campo 
-                label(for="tarea") Tarea:
-                input.nombre-tarea(type="text" name="tarea" placeholder="Nombre Tarea")
+                label(for="tarea") Task:
+                input.nombre-tarea(type="text" name="tarea" placeholder="Task Name")
             .campo-enviar
-                input.boton.nueva-tarea(type="submit", value="Agregar")
+                input.boton.nueva-tarea(type="submit", value="Add")
 
         .listado-pendientes 
             ul 
@@ -24,15 +24,15 @@ block content
                                     i.far.fa-check-circle
                                 i.fas.fa-trash    
                 else 
-                    p No hay tareas en este proyecto
+                    p No tasks in this project
 
         // Avance del proyecto
         .avance 
-            h2 Avance del Proyecto
+            h2 Project Progress
             #barra-avance.barra-avance  
                 #porcentaje.porcentaje
 
         //Acciones que se pueden realizar
         .contenedor-acciones
-            a(href=`/proyectos/editar/${proyecto.id}`, class="boton") Editar Proyecto
-            button#eliminar-proyecto(data-proyecto-url=proyecto.url type="button", class="boton eliminar") Eliminar Proyecto
+            a(href=`/proyectos/editar/${proyecto.id}`, class="boton") Edit Project
+            button#eliminar-proyecto(data-proyecto-url=proyecto.url type="button", class="boton eliminar") Delete Project
