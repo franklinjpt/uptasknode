@@ -1,10 +1,12 @@
 const { Sequelize } = require('sequelize');
+require('dotenv').config();
 
+let {DB_NAME, DB_USER, DB_PASS, DB_HOST, DB_PORT} = process.env;
 
-const sequelize = new Sequelize('uptasknode', 'root', 'Oxforofranklin1.', {
-  host: 'localhost',
+const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASS, {
+  host: DB_HOST,
   dialect: 'mysql',
-  port: '3306',
+  port: DB_PORT,
   define: {
     timestamps: false
   },

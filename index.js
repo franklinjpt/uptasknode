@@ -7,6 +7,7 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const passport = require('./config/passport');
+require('dotenv').config();
 
 require('./models/Proyectos');
 require('./models/Tareas');
@@ -16,8 +17,7 @@ db.sync()
     .then(() => console.log("db is connected"))
     .catch(error => console.error(error))
 
-const app = express()
-const port = 3001
+const app = express();
 
 //Cargar archivos estaticos
 app.use(express.static('public'));
@@ -56,4 +56,7 @@ app.use((req, res, next) => {
 
 app.use('/', routes() );
 
-app.listen(port, () => console.log(`Example app listening on port ${port}`))
+const host = process.env.HOST || '0.0.0.0';
+const port = process.env.PORT || 3000;
+
+app.listen(port, host, () => console.log(`Example app listening on port ${port}`))
